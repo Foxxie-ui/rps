@@ -1,5 +1,4 @@
 
-
 function getComputerChoice(){
     let computerChoice = ""
     let num = Math.floor(Math.random()* 10)
@@ -43,34 +42,45 @@ function getPlayerChoice(){
     return playerChoice
 }
 
-const computerChoice = getComputerChoice();
+var computerChoice = getComputerChoice();
 
-const playerChoice = getPlayerChoice();
+var playerChoice = getPlayerChoice();
 
 
+function playGame (){
+    let playerScore = 0;
+    let computerScore = 0;
+    
 
 function playRound(playerChoice, computerChoice) {
 let result = ""
 
+
     if (playerChoice === "Skull" && computerChoice === "Blade"){
         result = "You win! The skull smashes the blade!"
+        playerScore++;
     }
 
     else if (playerChoice === "Blade" && computerChoice === "Skin"){
         result = "You win! The blade pierces the skin!"
+        playerScore++;
     }
 
     else if (playerChoice === "Skin" && computerChoice === "Skull") {
         result = "You win! The skin covers the skull!"
+        playerScore++;
     }
     else if (playerChoice === "Skull" && computerChoice === "Skin"){
         result = "You lose! The skin covers the skull"
+        computerScore++;
     }
     else if (playerChoice === "Skin" && computerChoice === "Blade"){
         result = "You lose! The blade pierces your skin!"
+        computerScore++;
     }
     else if (playerChoice === "Blade" && computerChoice === "Skull"){
         result = "You lose! The skull smashes your blade!"
+        computerScore++;
     }
 
     else {
@@ -78,11 +88,36 @@ let result = ""
     }
 
     console.log(result)
+    console.log("player score is " + playerScore)
+    console.log("Computer score is " + computerScore)
     
     
    
 
    
 }
+    playRound(playerChoice, computerChoice)
 
-playRound(playerChoice, computerChoice);
+
+    while (playerScore < 5 && computerScore < 5){
+        computerChoice = getComputerChoice(),
+        playerChoice = getPlayerChoice(),
+        playRound(playerChoice, computerChoice)
+    }
+
+    if (playerScore == 5){
+        console.log("You win!")
+    }
+    else if (computerScore == 5){
+        console.log("You lose!")
+    }
+
+}
+
+    
+
+
+
+
+
+playGame()
